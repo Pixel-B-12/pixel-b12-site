@@ -9,7 +9,7 @@
         :root {
             --terminal-green: #33ff00;
             --terminal-dim: #1a8000;
-            --terminal-gold: #faeec8;
+            --terminal-gold: #ffd700;
             --bg-color: #0a0a0a;
             --scanline-color: rgba(0, 0, 0, 0.5);
         }
@@ -138,8 +138,13 @@
         }
         
         .neon-gold {
+            
             color: #ffffff !important;
-            text-shadow: 0 0 5px var(--terminal-gold); /* Adds the neon glow */
+            
+            text-shadow:
+                0 0 5px var(--terminal-gold),   /* Tight base glow */
+                0 0 15px var(--terminal-gold),  /* Medium blur */
+                0 0 30px var(--terminal-gold);  /* Wide, soft ambient glow */
         }
 
         .ca-box {
@@ -306,6 +311,7 @@
 
 </body>
 </html>
+
 
 
 
