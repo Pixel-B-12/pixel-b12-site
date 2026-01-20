@@ -24,7 +24,7 @@
             text-shadow: 0 0 5px var(--terminal-dim);
         }
 
-        /* --- CRT EFFECT (THINNER LINES) --- */
+        /* --- CRT EFFECT (THIN LINES) --- */
         body::before {
             content: " ";
             display: block;
@@ -38,13 +38,13 @@
                 var(--scanline-color) 50%,
                 rgba(0, 0, 0, 0.1) 50%
             );
-            background-size: 100% 2px; /* Changed from 4px to 2px */
+            background-size: 100% 2px;
             z-index: 10;
             pointer-events: none;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px; /* Increased slightly for side-by-side layout */
             margin: 0 auto;
             position: relative;
             z-index: 5;
@@ -53,39 +53,46 @@
             box-shadow: 0 0 20px var(--terminal-dim);
         }
 
-        /* --- HEADER & STATUS --- */
+        /* --- NEW HEADER STRUCTURE --- */
         header {
-            text-align: center;
+            display: flex; /* Enables side-by-side layout */
+            align-items: center; /* Centers items vertically */
             border-bottom: 2px dashed var(--terminal-dim);
             padding-bottom: 20px;
             margin-bottom: 20px;
+        }
+
+        /* Container for the Logo on the left */
+        .header-logo-container {
+            flex: 0 0 auto; /* Won't shrink or grow */
+            margin-right: 30px; /* Spacing between logo and text */
+        }
+
+        .title-logo {
+            height: 150px; /* Adjust this to make logo bigger/smaller */
+            width: auto;
+            image-rendering: pixelated;
+            animation: flicker 2s infinite;
+        }
+
+        /* Container for all text and buttons on the right */
+        .header-text-container {
+            flex: 1 1 auto; /* Takes up remaining space */
+            text-align: left; /* Aligns text to the left */
         }
 
         h1 {
             font-size: 4rem;
             margin: 0;
             letter-spacing: 5px;
-            /* NEW FLEXBOX STYLES FOR LOGO ALIGNMENT */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* Keeps the whole container flickering */
+            line-height: 1;
             animation: flicker 2s infinite;
         }
-
-        /* NEW STYLE FOR THE LOGO IMAGE */
-        .title-logo {
-            height: 1em; /* Makes it the same height as the text font */
-            margin-right: 15px; /* Spacing between logo and text */
-            /* CRITICAL: KEEPS PIXEL ART SHARP WHEN RESIZED */
-            image-rendering: pixelated; 
-        }
         
-        /* NEW TAGLINE STYLE */
         h2 {
             font-size: 1.5rem;
-            margin-top: -10px;
-            color: var(--terminal-green); /* Changed back to green */
+            margin-top: 5px;
+            color: var(--terminal-green);
             background-color: var(--terminal-dim);
             display: inline-block;
             padding: 2px 10px;
@@ -107,8 +114,12 @@
             margin-right: 5px;
             animation: blink 1s infinite;
         }
+        
+        .header-buttons {
+            margin-top: 20px;
+        }
 
-        /* --- THE DAILY CARTRIDGE (TOKEN) --- */
+        /* --- SECTIONS --- */
         .section {
             margin-bottom: 40px;
         }
@@ -123,6 +134,7 @@
             font-weight: bold;
         }
 
+        /* --- CA BOX --- */
         .ca-box {
             background: rgba(0, 50, 0, 0.5);
             border: 1px solid var(--terminal-green);
@@ -153,9 +165,11 @@
         }
         
         .mechanic-step strong {
-            color: var(--terminal-green); /* Changed back to green */
+            color: var(--terminal-green);
             text-decoration: none;
             font-size: 1.3rem;
+            display: block;
+            margin-bottom: 5px;
         }
 
         /* --- CHART EMBED --- */
@@ -200,9 +214,19 @@
             100% { opacity: 1; }
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header-logo-container {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            .header-text-container {
+                text-align: center;
+            }
+            h1 { font-size: 3rem; }
             h2 { font-size: 1.2rem; }
             .mechanic-grid { grid-template-columns: 1fr; }
         }
@@ -212,18 +236,22 @@
 
 <div class="container">
     <header>
-        <h1>
+        <div class="header-logo-container">
             <img src="logo-icon.png" alt="Pixel B-12 Logo" class="title-logo">
-            PIXEL B-12
-        </h1>
-        <h2>NICHE GAME STREAMS EVERYDAY</h2>
-        <br>
-        <div class="status-box">
-            <span class="live-dot"></span> SYSTEM STATUS: ONLINE
         </div>
-        <br><br>
-        <a href="https://pump.fun/" target="_blank" class="btn">WATCH STREAM</a>
-        <a href="https://t.me/YOUR_TELEGRAM" target="_blank" class="btn">COMMUNITY</a>
+        
+        <div class="header-text-container">
+            <h1>PIXEL B-12</h1>
+            <h2>NICHE GAME STREAMS EVERYDAY</h2>
+            <br>
+            <div class="status-box">
+                <span class="live-dot"></span> SYSTEM STATUS: ONLINE
+            </div>
+            <div class="header-buttons">
+                <a href="https://pump.fun/" target="_blank" class="btn">WATCH STREAM</a>
+                <a href="https://t.me/YOUR_TELEGRAM" target="_blank" class="btn">COMMUNITY</a>
+            </div>
+        </div>
     </header>
 
     <div class="section">
@@ -290,6 +318,7 @@
 
 </body>
 </html>
+
 
 
 
