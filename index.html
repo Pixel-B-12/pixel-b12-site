@@ -40,7 +40,7 @@
             );
             background-size: 100% 4px;
             z-index: 10;
-            pointer-events: none; /* Allows clicking through the scanlines */
+            pointer-events: none;
         }
 
         .container {
@@ -67,12 +67,22 @@
             letter-spacing: 5px;
             animation: flicker 2s infinite;
         }
+        
+        /* NEW TAGLINE STYLE */
+        h2 {
+            font-size: 1.5rem;
+            margin-top: -10px;
+            color: #fff;
+            background-color: var(--terminal-dim);
+            display: inline-block;
+            padding: 2px 10px;
+        }
 
         .status-box {
             display: inline-block;
             border: 1px solid var(--terminal-green);
             padding: 5px 15px;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         .live-dot {
@@ -97,6 +107,7 @@
             font-size: 1.5rem;
             display: inline-block;
             margin-bottom: 15px;
+            font-weight: bold;
         }
 
         .ca-box {
@@ -115,7 +126,7 @@
             color: black;
         }
 
-        /* --- MECHANIC EXPLAINER --- */
+        /* --- TOKENOMICS GRID --- */
         .mechanic-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -124,7 +135,14 @@
 
         .mechanic-step {
             border: 1px dashed var(--terminal-dim);
-            padding: 10px;
+            padding: 15px;
+            background: rgba(0, 20, 0, 0.8);
+        }
+        
+        .mechanic-step strong {
+            color: #fff;
+            text-decoration: underline;
+            font-size: 1.3rem;
         }
 
         /* --- CHART EMBED --- */
@@ -145,6 +163,7 @@
             font-size: 1.5rem;
             margin-right: 10px;
             margin-bottom: 10px;
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -171,6 +190,7 @@
         /* Mobile Adjustments */
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.2rem; }
             .mechanic-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -180,6 +200,8 @@
 <div class="container">
     <header>
         <h1>PIXEL B-12</h1>
+        <h2>NICHE GAME STREAMS EVERYDAY</h2>
+        <br>
         <div class="status-box">
             <span class="live-dot"></span> SYSTEM STATUS: ONLINE
         </div>
@@ -199,23 +221,23 @@
     </div>
 
     <div class="section">
-        <div class="section-title">>> GAME RULES</div>
+        <div class="section-title">>> TOKENOMICS</div>
         <div class="mechanic-grid">
             <div class="mechanic-step">
-                <strong>1. LEVEL START</strong><br>
-                I stream niche/hard Android games.
+                <strong>1. THE TRIGGER</strong><br><br>
+                Every time I lose a level or die in-game.
             </div>
             <div class="mechanic-step">
-                <strong>2. GAME OVER</strong><br>
-                Every death/loss = I take 50% of fees collected.
+                <strong>2. THE BUYBACK</strong><br><br>
+                I take 50% of collected fees and MARKET BUY $PIXEL.
             </div>
             <div class="mechanic-step">
-                <strong>3. RELOAD</strong><br>
-                I buy $PIXEL tokens with the fees live.
+                <strong>3. THE ENDGAME</strong><br><br>
+                At the end of the stream, every single bought token is BURNED.
             </div>
             <div class="mechanic-step">
-                <strong>4. BURN</strong><br>
-                Tokens are sent to the burner wallet. Supply drops.
+                <strong>4. THE RESULT</strong><br><br>
+                Supply Crunch. Price Up. Diamond Hands Win.
             </div>
         </div>
     </div>
