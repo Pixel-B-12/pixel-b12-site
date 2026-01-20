@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIXEL B-12 | Retro Stream Protocol</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --terminal-green: #33ff00;
+            --terminal-dim: #1a8000;
+            --bg-color: #0a0a0a;
+            --scanline-color: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--terminal-green);
+            font-family: 'VT323', monospace;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px var(--terminal-dim);
+        }
+
+        /* --- CRT EFFECT --- */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                to bottom,
+                var(--scanline-color) 50%,
+                rgba(0, 0, 0, 0.1) 50%
+            );
+            background-size: 100% 4px;
+            z-index: 10;
+            pointer-events: none; /* Allows clicking through the scanlines */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 5;
+            border: 2px solid var(--terminal-green);
+            padding: 20px;
+            box-shadow: 0 0 20px var(--terminal-dim);
+        }
+
+        /* --- HEADER & STATUS --- */
+        header {
+            text-align: center;
+            border-bottom: 2px dashed var(--terminal-dim);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            letter-spacing: 5px;
+            animation: flicker 2s infinite;
+        }
+
+        .status-box {
+            display: inline-block;
+            border: 1px solid var(--terminal-green);
+            padding: 5px 15px;
+            margin-top: 10px;
+        }
+
+        .live-dot {
+            height: 12px;
+            width: 12px;
+            background-color: red;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+            animation: blink 1s infinite;
+        }
+
+        /* --- THE DAILY CARTRIDGE (TOKEN) --- */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            background-color: var(--terminal-green);
+            color: black;
+            padding: 5px 10px;
+            font-size: 1.5rem;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .ca-box {
+            background: rgba(0, 50, 0, 0.5);
+            border: 1px solid var(--terminal-green);
+            padding: 15px;
+            word-break: break-all;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            font-size: 1.4rem;
+        }
+
+        .ca-box:hover {
+            background: var(--terminal-green);
+            color: black;
+        }
+
+        /* --- MECHANIC EXPLAINER --- */
+        .mechanic-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .mechanic-step {
+            border: 1px dashed var(--terminal-dim);
+            padding: 10px;
+        }
+
+        /* --- CHART EMBED --- */
+        .chart-container {
+            height: 500px;
+            border: 1px solid var(--terminal-dim);
+            background: #000;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            background: black;
+            color: var(--terminal-green);
+            border: 2px solid var(--terminal-green);
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.5rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn:hover {
+            background: var(--terminal-green);
+            color: black;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes flicker {
+            0% { opacity: 0.9; }
+            5% { opacity: 0.8; }
+            10% { opacity: 1; }
+            80% { opacity: 1; }
+            85% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .mechanic-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>PIXEL B-12</h1>
+        <div class="status-box">
+            <span class="live-dot"></span> SYSTEM STATUS: ONLINE
+        </div>
+        <br><br>
+        <a href="https://pump.fun/" target="_blank" class="btn">WATCH STREAM</a>
+        <a href="https://t.me/YOUR_TELEGRAM" target="_blank" class="btn">TELEGRAM LOBBY</a>
+    </header>
+
+    <div class="section">
+        <div class="section-title">>> INSERT CARTRIDGE (TODAY'S TOKEN)</div>
+        <p>Click box to copy CA:</p>
+        
+        <div class="ca-box" onclick="copyCA()" id="caText">
+            8wXtTg...REPLACE_WITH_ACTUAL_CA...Example
+        </div>
+        <div id="copyMsg" style="text-align:center; height:20px; color:var(--terminal-green)"></div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">>> GAME RULES</div>
+        <div class="mechanic-grid">
+            <div class="mechanic-step">
+                <strong>1. LEVEL START</strong><br>
+                I stream niche/hard Android games.
+            </div>
+            <div class="mechanic-step">
+                <strong>2. GAME OVER</strong><br>
+                Every death/loss = I take 50% of fees collected.
+            </div>
+            <div class="mechanic-step">
+                <strong>3. RELOAD</strong><br>
+                I buy $PIXEL tokens with the fees live.
+            </div>
+            <div class="mechanic-step">
+                <strong>4. BURN</strong><br>
+                Tokens are sent to the burner wallet. Supply drops.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">>> LIVE DATA</div>
+        <div class="chart-container">
+            <iframe 
+                src="https://pump.fun/" 
+                width="100%" 
+                height="100%" 
+                frameborder="0">
+            </iframe>
+        </div>
+    </div>
+
+    <footer>
+        <p style="text-align: center; font-size: 0.8rem; border-top: 1px solid var(--terminal-dim); padding-top: 10px;">
+            © 2026 PIXEL B-12 PROTOCOL. GAME OVER IS JUST A DIP.
+        </p>
+    </footer>
+</div>
+
+<script>
+    function copyCA() {
+        var ca = document.getElementById("caText").innerText;
+        navigator.clipboard.writeText(ca);
+        document.getElementById("copyMsg").innerText = ">> COPIED TO CLIPBOARD";
+        setTimeout(() => {
+            document.getElementById("copyMsg").innerText = "";
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>
