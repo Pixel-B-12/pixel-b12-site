@@ -65,7 +65,20 @@
             font-size: 4rem;
             margin: 0;
             letter-spacing: 5px;
+            /* NEW FLEXBOX STYLES FOR LOGO ALIGNMENT */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Keeps the whole container flickering */
             animation: flicker 2s infinite;
+        }
+
+        /* NEW STYLE FOR THE LOGO IMAGE */
+        .title-logo {
+            height: 1em; /* Makes it the same height as the text font */
+            margin-right: 15px; /* Spacing between logo and text */
+            /* CRITICAL: KEEPS PIXEL ART SHARP WHEN RESIZED */
+            image-rendering: pixelated; 
         }
         
         /* NEW TAGLINE STYLE */
@@ -199,7 +212,10 @@
 
 <div class="container">
     <header>
-        <h1>PIXEL B-12</h1>
+        <h1>
+            <img src="logo-icon.png" alt="Pixel B-12 Logo" class="title-logo">
+            PIXEL B-12
+        </h1>
         <h2>NICHE GAME STREAMS EVERYDAY</h2>
         <br>
         <div class="status-box">
@@ -274,5 +290,6 @@
 
 </body>
 </html>
+
 
 
