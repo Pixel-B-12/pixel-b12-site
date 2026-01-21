@@ -17,22 +17,6 @@ This website serves as the daily hub for the **$PIXEL** ecosystem. It features a
 
 ---
 
-## ⚡ Daily Workflow (How to Update)
-*Follow these steps every time you launch a new token.*
-
-1.  **Open `index.html`** in your text editor (or directly on GitHub).
-2.  **Update the CA (Contract Address):**
-    * Find the `<div id="caText">` (around line ~140).
-    * Replace the old address with the **New Token CA**.
-3.  **Update the Chart:**
-    * Find the `<iframe>` section (around line ~185).
-    * Replace the `src="..."` link with the new **Pump.fun** or **DexScreener** URL.
-4.  **Commit Changes:**
-    * Save and commit to the `main` branch.
-    * *The site will automatically refresh in ~60 seconds.*
-
----
-
 ## 🛠️ Customization Guide
 
 ### Changing Colors
