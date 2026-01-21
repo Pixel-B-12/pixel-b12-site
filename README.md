@@ -10,7 +10,7 @@
 This website serves as the daily hub for the **$PIXEL** ecosystem. It features a CRT-terminal aesthetic, live chart integration, and a clear breakdown of the "Game Over" tokenomics.
 
 **Key Features:**
-* **Dynamic Daily Updates:** Designed to swap "Cartridges" (Contract Addresses) daily.
+* **Dynamic Daily Updates:** Designed for $PIXEL.
 * **Retro Aesthetics:** Scanline overlays, VT323 pixel fonts, and neon terminal styling.
 * **Mobile Responsive:** Stacks perfectly for mobile viewers (Logo Top / Text Bottom).
 * **Live Chart Embed:** seamless integration with Pump.fun or DexScreener charts.
